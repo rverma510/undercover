@@ -171,13 +171,13 @@ Builds the three read-only views on the brand.
 
 Success criteria:
 
-- [ ] `npx vitest run --root dashboard --coverage` passes, with tests for each view, the money formatter and the hash routing, and statement coverage of 80% or more.
-- [ ] `npm run check:ts` passes: Prettier, ESLint, `tsc` in strict mode with no `any`.
-- [ ] With `npm run dev` running, the Playwright MCP shows at `http://localhost:5173`: the queue with 25 claims, a count of 25 Waiting, and each claim's id in JetBrains Mono and amount as dollars.
-- [ ] Clicking CLM-1001 opens `#/claims/CLM-1001` with the story, the 3 items, the 4 documents, the Premium policy for Rome, and Maya Patel's earlier claim CLM-0412.
-- [ ] `#/instructions` shows the instructions as text, with nothing to edit.
-- [ ] A Playwright MCP screenshot in light mode and one in dark mode (`browser_emulate_media`) show the brand backgrounds (`#F0F4F5` and `#04232E`), rounded panels without outlines and the four state colors.
-- [ ] The browser console shows no errors.
+- [x] `npx vitest run --root dashboard --coverage` passes, with tests for each view, the money formatter and the hash routing, and statement coverage of 80% or more.
+- [x] `npm run check:ts` passes: Prettier, ESLint, `tsc` in strict mode with no `any`.
+- [x] With `npm run dev` running, the Playwright MCP shows at `http://localhost:5173`: the queue with 25 claims, a count of 25 Waiting, and each claim's id in JetBrains Mono and amount as dollars.
+- [x] Clicking CLM-1001 opens `#/claims/CLM-1001` with the story, the 3 items, the 4 documents, the Premium policy for Rome, and Maya Patel's earlier claim CLM-0412.
+- [x] `#/instructions` shows the instructions as text, with nothing to edit.
+- [x] A Playwright MCP screenshot in light mode and one in dark mode (`browser_emulate_media`) show the brand backgrounds (`#F0F4F5` and `#04232E`), rounded panels without outlines and the four state colors.
+- [x] The browser console shows no errors.
 
 ## Phase 5: Live progress, sign-off and end-to-end tests
 
