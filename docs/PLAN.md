@@ -133,15 +133,15 @@ Builds the write side: the claim's states, the agent's steps, decisions, payment
 
 Success criteria:
 
-- [ ] `uv run pytest -q backend` passes, with tests for every state change and every refusal below.
-- [ ] Recording an approve of $420.00 moves the claim to `decided`; paying $420.00 then records a payment.
-- [ ] Recording an approve of $1,000.00 moves the claim to `decided`, and paying $1,000.00 succeeds.
-- [ ] Recording an approve of $1,000.01 moves the claim to `awaiting_signoff`, and paying $1,000.01 returns 409 with a message that a handler must sign off, and no payment is recorded.
-- [ ] Paying an amount other than the decision's payout, paying a declined or referred claim, and paying twice all return 409.
-- [ ] Signing off with a handler id from `handlers.json` records the sign-off and the payment of the payout and moves the claim to `decided`; an unknown handler returns 404; signing off a claim that isn't waiting for sign-off returns 409.
-- [ ] `list_steps` returns only the steps of the latest run, in order.
-- [ ] A `curl` walk-through against the dev backend shows the same: start CLM-1003, record an approve of $1,500.00, the payment is refused with 409, sign off as HND-01, and `GET /api/claims/CLM-1003` shows it decided, signed off by Dana Whitfield and paid $1,500.00. `npm run reset` afterwards.
-- [ ] `npm run check:python` passes with coverage of 80% or more.
+- [x] `uv run pytest -q backend` passes, with tests for every state change and every refusal below.
+- [x] Recording an approve of $420.00 moves the claim to `decided`; paying $420.00 then records a payment.
+- [x] Recording an approve of $1,000.00 moves the claim to `decided`, and paying $1,000.00 succeeds.
+- [x] Recording an approve of $1,000.01 moves the claim to `awaiting_signoff`, and paying $1,000.01 returns 409 with a message that a handler must sign off, and no payment is recorded.
+- [x] Paying an amount other than the decision's payout, paying a declined or referred claim, and paying twice all return 409.
+- [x] Signing off with a handler id from `handlers.json` records the sign-off and the payment of the payout and moves the claim to `decided`; an unknown handler returns 404; signing off a claim that isn't waiting for sign-off returns 409.
+- [x] `list_steps` returns only the steps of the latest run, in order.
+- [x] A `curl` walk-through against the dev backend shows the same: start CLM-1003, record an approve of $1,500.00, the payment is refused with 409, sign off as HND-01, and `GET /api/claims/CLM-1003` shows it decided, signed off by Dana Whitfield and paid $1,500.00. `npm run reset` afterwards.
+- [x] `npm run check:python` passes with coverage of 80% or more.
 
 ## Phase 3: The UnderCover Agent
 

@@ -2,10 +2,11 @@
 
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, model_validator
 
 Status = Literal["waiting", "in_progress", "awaiting_signoff", "decided"]
 DecisionKind = Literal["approve", "decline", "refer"]
+StepKind = Literal["tool_call", "tool_result", "reply"]
 
 
 class Item(BaseModel):
@@ -121,3 +122,41 @@ class Handler(BaseModel):
     role: str
     email: str
     can_approve_over_limit: bool
+
+
+class Step(BaseModel):
+    step_id: int
+    kind: StepKind
+    text: str
+    created_at: str
+
+
+class StartRequest(BaseModel):
+    thread_id: str = Field(min_length=1)
+
+
+class StepRequest(BaseModel):
+    thread_id: str = Field(min_length=1)
+    kind: StepKind
+    text: str
+
+
+class DecisionRequest(BaseModel):
+    decision: DecisionKind
+    payout: float = Field(ge=0)
+    reasons: str = Field(min_length=1)
+    policy_section: str = Field(min_length=1)
+
+    @model_validator(mode="after")
+    def payout_only_on_approve(self) -> "DecisionRequest":
+        if self.decision != "approve" and self.payout != 0:
+            raise ValueError("payout must be 0 unless the decision is approve")
+        return self
+
+
+class PaymentRequest(BaseModel):
+    amount: float = Field(gt=0)
+
+
+class SignOffRequest(BaseModel):
+    handler_id: str
