@@ -153,13 +153,13 @@ Replaces the hello-world agent with the claims agent.
 
 Success criteria:
 
-- [ ] `uv run pytest -q agent` passes, with no model calls: the stub model and the backend app run in-process.
-- [ ] A stub run on CLM-1001 that reads the claim, policy and customer, records an approve of $420.00 and pays it leaves the claim `decided` and paid, with each tool call, tool result and the reply recorded as steps.
-- [ ] A stub run that approves $1,500.00 and then calls `pay_claim` with $1,500.00 gets the backend's refusal back as a tool result, the run finishes without an error, the claim is `awaiting_signoff` and no payment is recorded.
-- [ ] A test asserts the agent's tools are exactly `get_claim`, `get_policy`, `get_customer`, `record_decision` and `pay_claim`, with no sign-off.
-- [ ] A test asserts the system prompt is the instructions from the API followed by the policy wording.
-- [ ] The existing test that `MODEL_NAME` picks the model still passes.
-- [ ] `npm run check:python` passes with coverage of 80% or more.
+- [x] `uv run pytest -q agent` passes, with no model calls: the stub model and the backend app run in-process.
+- [x] A stub run on CLM-1001 that reads the claim, policy and customer, records an approve of $420.00 and pays it leaves the claim `decided` and paid, with each tool call, tool result and the reply recorded as steps.
+- [x] A stub run that approves $1,500.00 and then calls `pay_claim` with $1,500.00 gets the backend's refusal back as a tool result, the run finishes without an error, the claim is `awaiting_signoff` and no payment is recorded.
+- [x] A test asserts the agent's tools are exactly `get_claim`, `get_policy`, `get_customer`, `record_decision` and `pay_claim`, with no sign-off.
+- [x] A test asserts the system prompt is the instructions from the API followed by the policy wording.
+- [x] The existing test that `MODEL_NAME` picks the model still passes.
+- [x] `npm run check:python` passes with coverage of 80% or more.
 
 ## Phase 4: Dashboard views
 
