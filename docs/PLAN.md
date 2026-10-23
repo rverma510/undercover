@@ -113,15 +113,15 @@ Builds the database, the seed loader and the read side of the API: everything th
 
 Success criteria:
 
-- [ ] `uv run pytest -q backend` passes, with tests for each operation, 404s for unknown ids, and seeding into an empty database.
-- [ ] A test asserts the seed loader never opens a path under `data/evals/` and that no response contains a field from the answer key (`calculation`, `failure_class`, `difficulty`).
-- [ ] `npm run reset` prints that it seeded 25 claims, 50 policies, 49 customers and 3 handlers.
-- [ ] With `npm run dev:backend` running, `curl -s localhost:8000/api/claims` returns 25 claims, each with `status` `waiting` and the customer's name.
-- [ ] `curl -s localhost:8000/api/claims/CLM-1001` returns Maya Patel's claim with its 3 items and 4 documents and no decision.
-- [ ] `curl -s localhost:8000/api/claims/CLM-9999` returns 404.
-- [ ] `curl -s localhost:8000/api/policy-wording` starts with `# UnderCover Travel Insurance: Policy Wording`; nothing serves the claims manual.
-- [ ] `curl -s localhost:8000/openapi.json` shows an `operationId` and a one-line description (from the docstring) on every route, and no optional parameters.
-- [ ] `npm run check:python` passes with coverage of 80% or more.
+- [x] `uv run pytest -q backend` passes, with tests for each operation, 404s for unknown ids, and seeding into an empty database.
+- [x] A test asserts the seed loader never opens a path under `data/evals/` and that no response contains a field from the answer key (`calculation`, `failure_class`, `difficulty`).
+- [x] `npm run reset` prints that it seeded 25 claims, 50 policies, 49 customers and 3 handlers.
+- [x] With `npm run dev:backend` running, `curl -s localhost:8000/api/claims` returns 25 claims, each with `status` `waiting` and the customer's name.
+- [x] `curl -s localhost:8000/api/claims/CLM-1001` returns Maya Patel's claim with its 3 items and 4 documents and no decision.
+- [x] `curl -s localhost:8000/api/claims/CLM-9999` returns 404.
+- [x] `curl -s localhost:8000/api/policy-wording` starts with `# UnderCover Travel Insurance: Policy Wording`; nothing serves the claims manual.
+- [x] `curl -s localhost:8000/openapi.json` shows an `operationId` and a one-line description (from the docstring) on every route, and no optional parameters.
+- [x] `npm run check:python` passes with coverage of 80% or more.
 
 ## Phase 2: Backend decisions, payments and sign-off
 
