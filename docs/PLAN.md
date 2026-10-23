@@ -208,12 +208,12 @@ Runs the real agent on real claims, then tidies up for you.
 
 Success criteria (the agent runs use your OpenRouter key on `openai/gpt-6-luna`, or set `MODEL_NAME=openrouter/free` for free; these are the only checks that call a model):
 
-- [ ] With `npm run dev` running, `npm run agent -- CLM-1001` finishes, and the Playwright MCP shows CLM-1001 moving through In progress, with its steps appearing, to Decided with a decision, two or three sentences of reasons and a policy section.
-- [ ] `npm run agent -- CLM-1003` (emergency medical, $3,800.00 claimed) finishes. If the agent approves more than $1,000.00, the claim shows Waiting for sign-off and `GET /api/claims/CLM-1003` shows no payment until a handler signs off in the dashboard.
-- [ ] I report both decisions to you. I don't score them against `data/evals/`, which waits for the evaluations on Week 2 Day 4.
-- [ ] `npm run reset` returns the queue to 25 waiting claims.
-- [ ] `docs/STATUS.md` describes what's built and how to run it: `npm run dev`, `npm run agent`, `npm run reset`.
-- [ ] `npm run check` passes, and I report its results.
+- [x] With `npm run dev` running, `npm run agent -- CLM-1001` finishes, and the Playwright MCP shows CLM-1001 moving through In progress, with its steps appearing, to Decided with a decision, two or three sentences of reasons and a policy section.
+- [x] `npm run agent -- CLM-1003` (emergency medical, $3,800.00 claimed) finishes. If the agent approves more than $1,000.00, the claim shows Waiting for sign-off and `GET /api/claims/CLM-1003` shows no payment until a handler signs off in the dashboard.
+- [x] I report both decisions to you. I don't score them against `data/evals/`, which waits for the evaluations on Week 2 Day 4.
+- [x] `npm run reset` returns the queue to 25 waiting claims.
+- [x] `docs/STATUS.md` describes what's built and how to run it: `npm run dev`, `npm run agent`, `npm run reset`.
+- [x] `npm run check` passes, and I report its results.
 
 ## Out of scope for the pilot
 

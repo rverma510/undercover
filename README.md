@@ -10,6 +10,17 @@ This is the repo that accompanies the course. UnderCover is a fictional travel i
 
 _If you're looking at this in VS Code or Cursor, right-click `README.md` in the Explorer on the left and choose **Open Preview** to see it formatted._
 
+## Running the claims pilot
+
+After `uv sync` and `npm install`:
+
+- `npm run dev` starts the backend and the dashboard at http://localhost:5173.
+- `npm run agent -- CLM-1001` runs the UnderCover Agent on one claim, and `npm run agent` on every waiting claim. It uses `OPENROUTER_API_KEY` from `.env`, and the model in `MODEL_NAME` if set, such as `openrouter/free`.
+- `npm run reset` puts every claim back in the queue.
+- `npm run check` runs every check.
+
+`docs/STATUS.md` says what's built.
+
 ## Key links
 
 - My curriculum of courses on Udemy: [edwarddonner.com/curriculum](https://edwarddonner.com/curriculum)
