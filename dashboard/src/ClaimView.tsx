@@ -1,4 +1,12 @@
-import { readJson, type Claim, type Customer, type Policy } from "./api";
+import { useState } from "react";
+import {
+  readJson,
+  type Claim,
+  type Customer,
+  type Policy,
+  type Step,
+} from "./api";
+import { DecisionPanel, SignOffPanel, StepsPanel } from "./DecisionPanel";
 import { date, label, money } from "./format";
 import { StateBadge } from "./StateBadge";
 import { useResource } from "./useResource";
@@ -124,11 +132,26 @@ function CustomerPanel({ customer }: Readonly<{ customer: Customer }>) {
   );
 }
 
+export const REFRESH_MS = 2000;
+
 export function ClaimView({ claimId }: Readonly<{ claimId: string }>) {
-  const { data: claim, error } = useResource<Claim>(
+  const [status, setStatus] = useState<Claim["status"] | null>(null);
+  const working = status === "in_progress";
+  const {
+    data: claim,
+    error,
+    reload,
+  } = useResource<Claim>(
     `/api/claims/${claimId}`,
     readJson,
+    status === "decided" ? 0 : REFRESH_MS,
   );
+  const { data: steps } = useResource<Step[]>(
+    `/api/claims/${claimId}/steps`,
+    readJson,
+    working ? REFRESH_MS : 0,
+  );
+  if (claim && claim.status !== status) setStatus(claim.status);
   const { data: policy } = useResource<Policy>(
     claim ? `/api/policies/${claim.policy_id}` : null,
     readJson,
@@ -163,6 +186,11 @@ export function ClaimView({ claimId }: Readonly<{ claimId: string }>) {
           <Documents claim={claim} />
         </div>
         <div className="stack">
+          <DecisionPanel claim={claim} />
+          {claim.status === "awaiting_signoff" && (
+            <SignOffPanel claim={claim} onSignedOff={reload} />
+          )}
+          <StepsPanel steps={steps ?? []} working={working} />
           {policy && <PolicyPanel policy={policy} />}
           {customer && <CustomerPanel customer={customer} />}
         </div>

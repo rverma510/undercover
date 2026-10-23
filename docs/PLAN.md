@@ -190,15 +190,15 @@ Adds the parts that move: the steps while the agent works, the states updating, 
 
 Success criteria:
 
-- [ ] vitest passes with tests for polling, the decision panel and the sign-off panel, at 80% coverage or more.
-- [ ] `npm run e2e` passes, with tests that play the agent through the API and check the screens:
-  - [ ] the queue shows 25 claims waiting
-  - [ ] after starting a claim and posting steps, the claim shows In progress and the steps appear without a reload
-  - [ ] after an approve of $420.00 and its payment, the claim shows Decided, Approve, $420.00, the reasons, the section and Paid
-  - [ ] after an approve of $1,500.00 and a refused payment, the claim shows Waiting for sign-off and Not paid; choosing a handler and clicking Sign off shows Decided, signed off by that handler, and Paid $1,500.00
-  - [ ] the e2e run leaves the dev database untouched
-- [ ] The Playwright MCP shows the same sign-off flow on the dev servers, with no console errors.
-- [ ] `npm run check` passes.
+- [x] vitest passes with tests for polling, the decision panel and the sign-off panel, at 80% coverage or more.
+- [x] `npm run e2e` passes, with tests that play the agent through the API and check the screens:
+  - [x] the queue shows 25 claims waiting
+  - [x] after starting a claim and posting steps, the claim shows In progress and the steps appear without a reload
+  - [x] after an approve of $420.00 and its payment, the claim shows Decided, Approve, $420.00, the reasons, the section and Paid
+  - [x] after an approve of $1,500.00 and a refused payment, the claim shows Waiting for sign-off and Not paid; choosing a handler and clicking Sign off shows Decided, signed off by that handler, and Paid $1,500.00
+  - [x] the e2e run leaves the dev database untouched
+- [x] The Playwright MCP shows the same sign-off flow on the dev servers, with no console errors.
+- [x] `npm run check` passes.
 
 ## Phase 6: The real agent, and the hand-over
 

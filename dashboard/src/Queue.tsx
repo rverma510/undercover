@@ -3,6 +3,8 @@ import { date, label, money, STATES } from "./format";
 import { StateBadge } from "./StateBadge";
 import { useResource } from "./useResource";
 
+export const REFRESH_MS = 3000;
+
 const ORDER: Status[] = [
   "waiting",
   "in_progress",
@@ -14,6 +16,7 @@ export function Queue() {
   const { data: claims, error } = useResource<ClaimSummary[]>(
     "/api/claims",
     readJson,
+    REFRESH_MS,
   );
 
   if (error) return <p role="alert">The queue could not be loaded.</p>;

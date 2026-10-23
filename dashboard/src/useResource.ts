@@ -11,8 +11,9 @@ export function useResource<T>(
   path: string | null,
   read: (response: Response) => Promise<T>,
   refreshMs = 0,
-): { data: T | undefined; error: string | undefined } {
+): { data: T | undefined; error: string | undefined; reload: () => void } {
   const [loaded, setLoaded] = useState<Loaded<T> | null>(null);
+  const [version, setVersion] = useState(0);
 
   useEffect(() => {
     if (path === null) return;
@@ -38,8 +39,14 @@ export function useResource<T>(
       live = false;
       clearInterval(timer);
     };
-  }, [path, read, refreshMs]);
+  }, [path, read, refreshMs, version]);
 
   const current = loaded !== null && loaded.path === path ? loaded : null;
-  return { data: current?.data, error: current?.error };
+  return {
+    data: current?.data,
+    error: current?.error,
+    reload: () => {
+      setVersion((count) => count + 1);
+    },
+  };
 }

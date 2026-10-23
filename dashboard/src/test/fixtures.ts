@@ -108,14 +108,22 @@ export function claimRoutes(
   };
 }
 
-/** Stub fetch: GETs answer from routes by path, and others by "METHOD path". */
+type Answer = (init?: RequestInit) => unknown;
+
+/**
+ * Stub fetch: GETs answer from routes by path, and others by "METHOD path".
+ * A route can be a function of the request, which runs on each call and can
+ * return a Response.
+ */
 export function stubApi(routes: Record<string, unknown>) {
   const fetchMock = vi.fn((path: string, init?: RequestInit) => {
     const key = init?.method ? `${init.method} ${path}` : path;
-    const body = routes[key];
+    const route = routes[key];
+    const body = typeof route === "function" ? (route as Answer)(init) : route;
     if (body === undefined) {
       return Promise.resolve(new Response("Not found", { status: 404 }));
     }
+    if (body instanceof Response) return Promise.resolve(body);
     return Promise.resolve(
       typeof body === "string" ? new Response(body) : Response.json(body),
     );
