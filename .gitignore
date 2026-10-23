@@ -75,3 +75,5 @@ Thumbs.db
 
 # Openrouter ai 
 openrouter.ai
+# The local database
+backend/*.db
